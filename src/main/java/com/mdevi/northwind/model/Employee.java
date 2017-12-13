@@ -1,88 +1,54 @@
 package com.mdevi.northwind.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
-//TODO: Create class for employee.
+
 @Entity
 @Table(name = "employees")
 public class Employee implements Serializable {
     private static final long serialVersionUID = 7526472295622776147L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "employeeid")
-    private long employeeid;
+    private Integer employeeid;
 
     @Column(name = "lastname", nullable = false)
-    @Size(min = 2, max = 20, message = "{user.name.invalid}")
+    @Size(max = 20, min = 3, message = "{user.name.invalid}")
+    @NotEmpty(message = "Please Enter your name")
     private String lastName;
 
     @Column(name = "firstname", nullable = false)
-    @Size(min = 1, max = 10, message = "{user.name.invalid}")
+    @Size(max = 10, min = 3, message = "{user.name.invalid}")
+    @NotEmpty(message = "Please Enter your name")
     private String firstName;
 
     @Column(name = "title")
     private String title;
 
-    @Column(name = "titleofcortesy")
-    private String titleofCourtesy;
+    @Column(name = "titleofcourtesy")
+    private String titleofcourtesy;
 
     @Column(name = "birthdate")
     @Temporal(TemporalType.DATE)
-    private Date birthDate;
-
-    @Column(name = "hiredate")
-    @Temporal(TemporalType.DATE)
-    private Date hireDate;
-
-    @Column(name = "address")
-    private String address;
-
-    @Column(name = "city")
-    private String city;
-
-    @Column(name = "region")
-    private String region;
-
-    @Column(name = "postalcode")
-    private String postalCode;
-
-    @Column(name = "country")
-    private String country;
-
-    @Column(name = "homephone")
-    @Digits(integer = 10, fraction = 0)
-    private String homephone;
-
-    @Column(name = "extension")
-    private String extension;
-
-    @Column(name = "photo")
-    @Lob
-    private byte[] photo;
-
-    @Column(name = "notes")
-    private String notes;
+    private Date birthdate;
 
     public Employee() {
     }
 
-    public Employee(String lastName, String firstName, String titleofCourtesy, Date birthDate) {
+    public Employee(String lastName, String firstName, String title) {
         this.lastName = lastName;
         this.firstName = firstName;
-        this.titleofCourtesy = titleofCourtesy;
-        this.birthDate = birthDate;
+        this.title = title;
     }
 
-    public long getEmployeeid() {
+    public Integer getEmployeeid() {
         return employeeid;
-    }
-
-    public void setEmployeeid(long employeeid) {
-        this.employeeid = employeeid;
     }
 
     public String getLastName() {
@@ -109,99 +75,19 @@ public class Employee implements Serializable {
         this.title = title;
     }
 
-    public String getTitleofCourtesy() {
-        return titleofCourtesy;
+    public String getTitleofcourtesy() {
+        return titleofcourtesy;
     }
 
-    public void setTitleofCourtesy(String titleofCourtesy) {
-        this.titleofCourtesy = titleofCourtesy;
+    public void setTitleofcourtesy(String titleofcourtesy) {
+        this.titleofcourtesy = titleofcourtesy;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public Date getBirthdate() {
+        return birthdate;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public Date getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getHomephone() {
-        return homephone;
-    }
-
-    public void setHomephone(String homephone) {
-        this.homephone = homephone;
-    }
-
-    public String getExtension() {
-        return extension;
-    }
-
-    public void setExtension(String extension) {
-        this.extension = extension;
-    }
-
-    public byte[] getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 }
