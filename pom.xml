@@ -9,9 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-
     <dependencies>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -32,8 +30,6 @@
             <version>4.3.10.RELEASE</version>
             <scope>compile</scope>
         </dependency>
-
-
         <!-- Servlet Dependency -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -41,7 +37,6 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
-
         <!-- JSTL Dependency -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -54,21 +49,18 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.2.12.Final</version>
         </dependency>
-
         <!-- Hibernate Validator -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>5.2.4.Final</version>
         </dependency>
-
         <!-- Apache dbcp Dependency -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
             <version>2.1.1</version>
         </dependency>
-
         <!-- Postgresql Dependency -->
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -81,8 +73,6 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
