@@ -31,7 +31,7 @@
                 <label class="control-label col-md-2 col-md-2"
                        for="customerId"><spring:message code="addCustomer.form.field.CustomerID"/></label>
                 <div class="col-lg-10">
-                    <form:input id="customerId" path="customerId" type="text" class="form:input-large"/>
+                    <form:input id="customerId" path="customerid" type="text" class="form:input-large"/>
                 </div>
             </div>
             <!-- company name -->
@@ -47,7 +47,7 @@
                 <label class="control-label col-md-2 col-md-2" for="lastName"><spring:message
                         code="addCustomer.form.field.ContactName"/></label>
                 <div class="col-lg-10">
-                    <form:input id="contactName" path="lastName" type="text" class="form:input-large"/>
+                    <form:input id="contactName" path="contactname" type="text" class="form:input-large"/>
                 </div>
             </div>
             <!-- contact title-->
