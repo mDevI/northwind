@@ -11,15 +11,24 @@ import java.util.List;
 
 @Repository
 public class CustomerRepositoryImpl implements CustomerRepository {
-    @Autowired
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
-    @Override
-    public void save(Customer customer) {
-        sessionFactory.getCurrentSession().save(customer);
+    @Autowired
+    public CustomerRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
-    @Override
+    public Customer getCustomerById(String id) {
+        @SuppressWarnings("unchecked")
+        TypedQuery<Customer> query = sessionFactory.getCurrentSession().createQuery("from Customer where customerid = :id").setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    public void save(Customer customer) {
+//        sessionFactory.getCurrentSession().save(customer);
+        sessionFactory.getCurrentSession().saveOrUpdate(customer);
+    }
+
     public List<Customer> getAllCustomers() {
         @SuppressWarnings("unchecked")
         TypedQuery<Customer> queryList = sessionFactory.getCurrentSession().createQuery("from Customer");

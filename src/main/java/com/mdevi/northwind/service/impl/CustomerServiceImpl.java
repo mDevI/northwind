@@ -11,16 +11,23 @@ import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
-    @Autowired
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
-    @Override
+    @Autowired
+    public CustomerServiceImpl(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
+
+    @Transactional(readOnly = true)
+    public Customer getCustomerById(String id) {
+        return customerRepository.getCustomerById(id);
+    }
+
     @Transactional
     public void save(Customer customer) {
         customerRepository.save(customer);
     }
 
-    @Override
     @Transactional(readOnly = true)
     public List<Customer> getAllCustomers() {
         return customerRepository.getAllCustomers();
