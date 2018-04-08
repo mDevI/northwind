@@ -20,7 +20,8 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     public Customer getCustomerById(String id) {
         @SuppressWarnings("unchecked")
-        TypedQuery<Customer> query = sessionFactory.getCurrentSession().createQuery("from Customer where customerid = :id").setParameter("id", id);
+        TypedQuery<Customer> query = sessionFactory.getCurrentSession()
+                .createQuery("from Customer where customerid = :id").setParameter("id", id);
         return query.getSingleResult();
     }
 
@@ -32,6 +33,14 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     public List<Customer> getAllCustomers() {
         @SuppressWarnings("unchecked")
         TypedQuery<Customer> queryList = sessionFactory.getCurrentSession().createQuery("from Customer");
+        return queryList.getResultList();
+    }
+
+    @Override
+    public List<Customer> getCustomersByName(String customerName) {
+        String HQL = "from Customer where companyname LIKE " + customerName + "%";
+        @SuppressWarnings("unchecked")
+        TypedQuery<Customer> queryList = sessionFactory.getCurrentSession().createQuery(HQL);
         return queryList.getResultList();
     }
 }

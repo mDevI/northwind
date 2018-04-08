@@ -32,4 +32,9 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getAllCustomers() {
         return customerRepository.getAllCustomers();
     }
+
+    @Override
+    public List<Customer> getCustomerByName(String customerName) {
+        return customerRepository.getCustomersByName(customerName);
+    }
 }

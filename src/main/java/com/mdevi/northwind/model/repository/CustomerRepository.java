@@ -11,4 +11,6 @@ public interface CustomerRepository {
     void save(Customer customer);
 
     List<Customer> getAllCustomers();
+
+    List<Customer> getCustomersByName(String customerName);
 }

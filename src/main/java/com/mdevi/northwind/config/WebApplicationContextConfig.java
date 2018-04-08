@@ -18,8 +18,7 @@ import org.springframework.web.servlet.view.JstlView;
 public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
 
     @Override
-    public void configureDefaultServletHandling
-            (DefaultServletHandlerConfigurer configurer) {
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
 
