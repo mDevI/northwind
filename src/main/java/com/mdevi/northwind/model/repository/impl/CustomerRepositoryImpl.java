@@ -2,6 +2,7 @@ package com.mdevi.northwind.model.repository.impl;
 
 import com.mdevi.northwind.model.Customer;
 import com.mdevi.northwind.model.repository.CustomerRepository;
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,8 @@ import java.util.List;
 @Repository
 public class CustomerRepositoryImpl implements CustomerRepository {
     private final SessionFactory sessionFactory;
+
+    private static final Logger logger = Logger.getLogger(CustomerRepositoryImpl.class);
 
     @Autowired
     public CustomerRepositoryImpl(SessionFactory sessionFactory) {
@@ -26,7 +29,6 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     public void save(Customer customer) {
-//        sessionFactory.getCurrentSession().save(customer);
         sessionFactory.getCurrentSession().saveOrUpdate(customer);
     }
 
@@ -38,9 +40,10 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public List<Customer> getCustomersByName(String customerName) {
-        String HQL = "from Customer where companyname LIKE " + customerName + "%";
+        String HQL = "from Customer where companyname = :name";
         @SuppressWarnings("unchecked")
-        TypedQuery<Customer> queryList = sessionFactory.getCurrentSession().createQuery(HQL);
+        TypedQuery<Customer> queryList = sessionFactory.getCurrentSession().createQuery(HQL).setParameter("name", customerName);
+        //logger.info("getCustomerByName HQL string: " + HQL );
         return queryList.getResultList();
     }
 }

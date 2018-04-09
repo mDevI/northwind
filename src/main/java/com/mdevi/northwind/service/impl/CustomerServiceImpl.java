@@ -33,8 +33,8 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.getAllCustomers();
     }
 
-    @Override
-    public List<Customer> getCustomerByName(String customerName) {
+    @Transactional(readOnly = true)
+    public List<Customer> getCustomersByName(String customerName) {
         return customerRepository.getCustomersByName(customerName);
     }
 }

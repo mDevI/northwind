@@ -35,22 +35,12 @@ public class CustomerController {
     }
 
     //TODO Create a controller method to select customers by name, country, city
-/*
 
     @RequestMapping(value = "/CustomersByName", method = RequestMethod.GET)
     public String getCustomersByName(Model model, @RequestParam("name") String customerName) {
-        model.addAttribute("customers", customerService.getCustomerByName(customerName));
+        model.addAttribute("customers", customerService.getCustomersByName(customerName));
         return "customers";
     }
-
-*/
-
-/*    @RequestMapping(value = "/{filters}", method = RequestMethod.GET)
-    public String getCustomersByFilter(Model model, @MatrixVariable(pathVar = "filters")Map<String,List<String>> filtersValues) {
-        model.addAttribute("customers", customerService.getCustomersByFilter(filtersValues));
-        return "customers";
-    }*/
-
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getAddNewCustomerForm(Model model) {
