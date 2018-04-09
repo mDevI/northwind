@@ -43,4 +43,12 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getCustomersByFilter(Map<String, List<String>> filters) {
         return customerRepository.getCustomersByFilter(filters);
     }
+
+    @Transactional
+    public void deleteCustomerByID(String customerId) {
+        Customer customer = customerRepository.getCustomerById(customerId);
+        if (customer != null) {
+            customerRepository.deleteCustomer(customer);
+        }
+    }
 }

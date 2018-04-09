@@ -34,7 +34,7 @@ public class CustomerController {
         return "customer";
     }
 
-    //TODO Create a controller method to select customers by name, country, city
+    //DONE Create a controller method to select customers by name, country, city
 
     @RequestMapping(value = "/CustomersByName", method = RequestMethod.GET)
     public String getCustomersByName(Model model, @RequestParam("name") String customerName) {
@@ -48,7 +48,12 @@ public class CustomerController {
         return "customers";
     }
 
-
+    //DONE Create a controller method to delete customer by its id.
+    @RequestMapping(value = "/delete")
+    public String deleteCustomerByID(@RequestParam("id") String customerId) {
+        customerService.deleteCustomerByID(customerId);
+        return "redirect:/customers";
+    }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getAddNewCustomerForm(Model model) {

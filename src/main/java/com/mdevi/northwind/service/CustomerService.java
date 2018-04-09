@@ -16,4 +16,6 @@ public interface CustomerService {
     List<Customer> getCustomersByName(String customerName);
 
     List<Customer> getCustomersByFilter(Map<String, List<String>> filters);
+
+    void deleteCustomerByID(String customerId);
 }

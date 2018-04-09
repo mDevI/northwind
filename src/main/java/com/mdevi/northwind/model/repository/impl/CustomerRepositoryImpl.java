@@ -3,6 +3,7 @@ package com.mdevi.northwind.model.repository.impl;
 import com.mdevi.northwind.model.Customer;
 import com.mdevi.northwind.model.repository.CustomerRepository;
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -73,5 +74,11 @@ public class CustomerRepositoryImpl implements CustomerRepository {
             logger.info(e.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public void deleteCustomer(Customer customer) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(customer);
     }
 }
