@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Map;
+import java.util.StringJoiner;
 
 @Repository
 public class CustomerRepositoryImpl implements CustomerRepository {
@@ -45,5 +47,31 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         TypedQuery<Customer> queryList = sessionFactory.getCurrentSession().createQuery(HQL).setParameter("name", customerName);
         //logger.info("getCustomerByName HQL string: " + HQL );
         return queryList.getResultList();
+    }
+
+    @Override
+    public List<Customer> getCustomersByFilter(Map<String, List<String>> filters) {
+
+        StringJoiner sjOR = new StringJoiner(" OR ");
+        for (Map.Entry<String, List<String>> stringEntry : filters.entrySet()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(stringEntry.getKey()).append(" IN ( ");
+            StringJoiner sjComma = new StringJoiner(", ");
+            for (String s : stringEntry.getValue()) {
+                sjComma.add(s);
+            }
+            sb.append(sjComma.toString());
+            sb.append(" )");
+            sjOR.add(sb.toString());
+        }
+        String HQL = "from Customer where " + sjOR.toString();
+        try {
+            @SuppressWarnings("unchecked")
+            TypedQuery<Customer> queryList = sessionFactory.getCurrentSession().createQuery(HQL);
+            return queryList.getResultList();
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+            return null;
+        }
     }
 }

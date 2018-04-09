@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -36,5 +37,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional(readOnly = true)
     public List<Customer> getCustomersByName(String customerName) {
         return customerRepository.getCustomersByName(customerName);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Customer> getCustomersByFilter(Map<String, List<String>> filters) {
+        return customerRepository.getCustomersByFilter(filters);
     }
 }

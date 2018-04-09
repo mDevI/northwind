@@ -5,10 +5,10 @@ import com.mdevi.northwind.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/customers")
@@ -41,6 +41,14 @@ public class CustomerController {
         model.addAttribute("customers", customerService.getCustomersByName(customerName));
         return "customers";
     }
+
+    @RequestMapping(value = "/CustomersByFilter/{params}", method = RequestMethod.GET)
+    public String getCustomersByFilter(Model model, @MatrixVariable(pathVar = "params") Map<String, List<String>> filterParams) {
+        model.addAttribute("customers", customerService.getCustomersByFilter(filterParams));
+        return "customers";
+    }
+
+
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getAddNewCustomerForm(Model model) {
