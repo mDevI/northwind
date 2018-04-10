@@ -5,6 +5,9 @@ import com.mdevi.northwind.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,8 +66,18 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddNewCustomerForm(@ModelAttribute("theCustomer") Customer customer) {
+    public String processAddNewCustomerForm(@ModelAttribute("theCustomer") Customer customer, BindingResult result) {
+        String[] suppressedFields = result.getSuppressedFields();
+        if (suppressedFields.length > 0) {
+            throw new RuntimeException("Attempting to bind disallowed fields:" + StringUtils.arrayToCommaDelimitedString(suppressedFields));
+        }
         customerService.save(customer);
         return "redirect:/customers";
+    }
+
+    @InitBinder
+    public void initializeBinder(WebDataBinder binder) {
+        binder.setAllowedFields("customerid", "companyname", "contactname",
+                "contacttitle", "address", "city", "region", "postalcode", "country");
     }
 }
