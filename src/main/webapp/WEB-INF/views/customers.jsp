@@ -23,8 +23,8 @@
     </div>
 </section>
 <section class="container">
-    <table class="table table-striped table-bordered table-dark">
-        <thead class="thead-dark">
+    <table class="table table-condensed table-hover table-striped">
+        <thead class="thead">
         <tr>
             <th id="IdColumn" class="bg-primary"># ID</th>
             <th id="courtesyColumn" class="bg-primary">Company name</th>
