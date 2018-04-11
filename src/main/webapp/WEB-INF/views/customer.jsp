@@ -22,6 +22,7 @@
 </section>
 <section class="container">
     <form:form method="POST" modelAttribute="theCustomer">
+        <form:errors path="*" cssClass="alert alert-danger" element="div"/>
         <div class="form-row">
             <div class="form-group col-md-2">
                 <label for="customerId"><spring:message code="customer.form.label.customerid"/></label>

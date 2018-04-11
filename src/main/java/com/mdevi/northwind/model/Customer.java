@@ -1,12 +1,12 @@
 package com.mdevi.northwind.model;
 
-import org.hibernate.validator.constraints.Length;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -18,37 +18,47 @@ public class Customer implements Serializable {
     @Id
     @Column(name = "customerid", columnDefinition = "char(5)", nullable = false, length = 5)
     @NotNull
-    @Length(max = 5)
+    @Pattern(regexp = "^.{5}$", message = "{Customer.validation.pattern.customerId}")
     private String customerid;
 
     @Column(name = "companyname")
+    @Size(min = 2, max = 40, message = "{Customer.validation.size.companyname}")
     private String companyname;
 
     @Column(name = "contactname")
+    @Size(min = 2, max = 30, message = ("Customer.validation.size.contactname"))
     private String contactname;
 
     @Column(name = "contacttitle")
+    @Size(min = 2, max = 30, message = "{Customer.validation.size.contacttitle}")
     private String contacttitle;
 
     @Column(name = "address")
+    @Size(min = 2, max = 60, message = "{Customer.validation.size.address}")
     private String address;
 
     @Column(name = "city")
+    @Size(min = 2, max = 15, message = "{Customer.validation.size.city}")
     private String city;
 
     @Column(name = "region")
+    @Size(min = 0, max = 15, message = "{Customer.validation.size.region}")
     private String region;
 
     @Column(name = "postalcode")
+    @Size(min = 5, max = 10, message = "{Customer.validation.size.postalcode}")
     private String postalcode;
 
     @Column(name = "country")
+    @Size(min = 2, max = 15, message = "{Customer.validation.size.country}")
     private String country;
 
     @Column(name = "phone")
+    @Size(min = 0, max = 24, message = "{Customer.validation.size.phone}")
     private String phone;
 
     @Column(name = "fax")
+    @Size(min = 0, max = 24, message = "{Customer.validation.size.fax}")
     private String fax;
 
     public Customer() {
