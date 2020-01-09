@@ -2,7 +2,8 @@ package com.mdevi.northwind.model.repository.impl;
 
 import com.mdevi.northwind.model.Customer;
 import com.mdevi.northwind.model.repository.CustomerRepository;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.StringJoiner;
 public class CustomerRepositoryImpl implements CustomerRepository {
     private final SessionFactory sessionFactory;
 
-    private static final Logger logger = Logger.getLogger(CustomerRepositoryImpl.class);
+    private static final Logger logger = LogManager.getLogger(CustomerRepository.class);
 
     @Autowired
     public CustomerRepositoryImpl(SessionFactory sessionFactory) {
