@@ -1,9 +1,9 @@
 package com.mdevi.northwind.model;
 
+import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
