@@ -15,15 +15,15 @@ public class Employee implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employeeid")
+    @Column(name = "employee_id")
     private Integer employeeid;
 
-    @Column(name = "lastname", nullable = false)
+    @Column(name = "last_name", nullable = false)
     @Size(max = 20, min = 3, message = "{user.name.invalid}")
     @NotEmpty(message = "Please Enter your name")
     private String lastName;
 
-    @Column(name = "firstname", nullable = false)
+    @Column(name = "first_name", nullable = false)
     @Size(max = 10, min = 3, message = "{user.name.invalid}")
     @NotEmpty(message = "Please Enter your name")
     private String firstName;
@@ -31,10 +31,10 @@ public class Employee implements Serializable {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "titleofcourtesy")
+    @Column(name = "title_of_courtesy")
     private String titleofcourtesy;
 
-    @Column(name = "birthdate")
+    @Column(name = "birth_date")
     @Temporal(TemporalType.DATE)
     private Date birthdate;
 
