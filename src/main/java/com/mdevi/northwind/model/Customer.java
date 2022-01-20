@@ -16,20 +16,20 @@ public class Customer implements Serializable {
     private static final long serialVersionUID = 7526472295622776141L;
 
     @Id
-    @Column(name = "customerid", columnDefinition = "char(5)", nullable = false, length = 5)
+    @Column(name = "customer_id", columnDefinition = "char(5)", nullable = false, length = 5)
     @NotNull
     @Pattern(regexp = "^.{5}$", message = "{Customer.validation.pattern.customerId}")
     private String customerid;
 
-    @Column(name = "companyname")
+    @Column(name = "company_name")
     @Size(min = 2, max = 40, message = "{Customer.validation.size.companyname}")
     private String companyname;
 
-    @Column(name = "contactname")
+    @Column(name = "contact_name")
     @Size(min = 2, max = 30, message = ("Customer.validation.size.contactname"))
     private String contactname;
 
-    @Column(name = "contacttitle")
+    @Column(name = "contact_title")
     @Size(min = 2, max = 30, message = "{Customer.validation.size.contacttitle}")
     private String contacttitle;
 
@@ -45,7 +45,7 @@ public class Customer implements Serializable {
     @Size(min = 0, max = 15, message = "{Customer.validation.size.region}")
     private String region;
 
-    @Column(name = "postalcode")
+    @Column(name = "postal_code")
     @Size(min = 5, max = 10, message = "{Customer.validation.size.postalcode}")
     private String postalcode;
 
