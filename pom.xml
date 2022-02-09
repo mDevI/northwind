@@ -14,7 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <postgresql.version>42.2.25</postgresql.version>
         <spring.version>5.0.17.RELEASE</spring.version>
-        <hibernate.core.version>5.2.12.Final</hibernate.core.version>
+        <hibernate.core.version>5.4.24.Final</hibernate.core.version>
         <hibernate.validator.version>5.2.5.Final</hibernate.validator.version>
     </properties>
 
